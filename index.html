@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wie sehr liebt Bo mich?</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Bo 💗">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff0f3">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1c0a15">
+<style>
+:root {
+  --bg: #fff0f3;
+  --ink: #3b0f21;
+  --muted: #94596c;
+  --accent: #d6245a;
+  --accent-deep: #a3173f;
+  --accent-ink: #ffffff;
+  color-scheme: light dark;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1c0a15;
+    --ink: #ffe8ef;
+    --muted: #c697a9;
+    --accent: #ff5c8a;
+    --accent-deep: #c23463;
+    --accent-ink: #2a0716;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1c0a15;
+  --ink: #ffe8ef;
+  --muted: #c697a9;
+  --accent: #ff5c8a;
+  --accent-deep: #c23463;
+  --accent-ink: #2a0716;
+}
+html { scroll-padding-top: env(safe-area-inset-top, 0px); height: 100%; }
+*, *::before, *::after { box-sizing: inherit; }
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  display: flex;
+  justify-content: center;
+  overflow-x: hidden;
+}
+main {
+  width: 100%;
+  max-width: 34rem;
+  min-height: 100vh;
+  padding: 2rem 1.25rem 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2.25rem;
+}
+.ask {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  width: 100%;
+  cursor: pointer;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-family: inherit;
+  font-weight: 800;
+  font-size: clamp(1.4rem, 6vw, 1.9rem);
+  line-height: 1.2;
+  padding: 1.5rem 1.5rem;
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  box-shadow: 0 0.5rem 0 var(--accent-deep);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.ask:active {
+  transform: translateY(0.35rem);
+  box-shadow: 0 0.15rem 0 var(--accent-deep);
+}
+.ask:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 4px;
+}
+.ask svg { width: 1.9rem; height: 1.9rem; flex: none; }
+.ask.idle svg { animation: beat 1.6s ease-in-out infinite; }
+@keyframes beat {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.22); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.16); }
+}
+.answer {
+  min-height: 17rem;
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+}
+.hint {
+  margin: 0;
+  color: var(--muted);
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.2rem;
+  text-align: center;
+}
+.line {
+  margin: 0;
+  font-weight: 500;
+  font-size: clamp(1.6rem, 7vw, 2.2rem);
+  line-height: 1.28;
+  text-wrap: balance;
+}
+.strong {
+  display: block;
+  margin-top: 0.9rem;
+  font-weight: 700;
+  font-size: clamp(2.3rem, 11vw, 3.4rem);
+  line-height: 1.05;
+  color: var(--accent);
+}
+.reveal { animation: reveal 0.45s ease-out both; }
+.line.reveal { animation-delay: 0.15s; }
+.opener {
+  margin: 0 0 0.7rem;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--muted);
+}
+.strong.reveal { animation-delay: 0.3s; }
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(0.6rem); }
+  to { opacity: 1; transform: none; }
+}
+.again {
+  margin: 1rem 0 0;
+  color: var(--muted);
+  font-family: system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+.privacy {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px));
+  text-align: center;
+  font-size: 0.85rem;
+  pointer-events: none;
+}
+.privacy a {
+  pointer-events: auto;
+  display: inline-block;
+  padding: 0.5rem 0.9rem;
+  color: var(--muted);
+  text-decoration: underline;
+}
+.hearts {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.heart {
+  position: absolute;
+  bottom: -2rem;
+  animation: float var(--dur, 3s) ease-out forwards;
+}
+@keyframes float {
+  0% { transform: translate(0, 0) scale(0.6); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translate(var(--sway, 0), -105vh) scale(1.1); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ask.idle svg, .reveal { animation: none; }
+  .ask { transition: none; }
+}
+</style>
+</head>
+<body>
+<main>
+  <button class="ask idle" id="ask" type="button">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    <span>Wie sehr liebt Bo mich?</span>
+  </button>
+
+  <div class="answer" id="answer" aria-live="polite">
+    <p class="hint" id="hint">Tipp auf die Frage 💗</p>
+  </div>
+</main>
+<div class="hearts" id="hearts" aria-hidden="true"></div>
+<nav class="privacy"><a href="datenschutz.html">Datenschutz</a></nav>
+
+<script>
+(function () {
+  var REASONS = [
+    "mehr, als es Sterne am Himmel gibt",
+    "bis zum Mond und wieder zurück",
+    "so sehr, dass Worte einfach nicht reichen",
+    "größer als das ganze Universum",
+    "tiefer als der tiefste Ozean",
+    "höher als der höchste Berg",
+    "mehr als Pizza – und das will was heißen",
+    "so sehr, wie man Kaffee am Montagmorgen braucht",
+    "mehr als alle Sandkörner am Strand",
+    "bis ans Ende der Welt und noch drei Schritte weiter",
+    "so sehr, dass mein Herz manchmal vor Aufregung stolpert",
+    "mehr als jede Sonne, die je aufgegangen ist",
+    "so sehr, dass es kaum in einen einzigen Menschen passt",
+    "mit jedem Herzschlag ein kleines bisschen mehr",
+    "mehr als Schokolade, Eis und Kuchen zusammen",
+    "so sehr, dass selbst Mathe es nicht berechnen kann",
+    "unendlich plus eins",
+    "wie ein Fisch das Wasser – nur noch viel doller",
+    "so sehr, dass jeder Tag mit dir ein Geschenk ist",
+    "mehr, als Worte, Lieder und Gedichte je sagen könnten",
+    "bis in die hinterste Ecke der Galaxie",
+    "so sehr, dass die Schmetterlinge in meinem Bauch Überstunden machen",
+    "mehr als gestern – und morgen noch mehr als heute",
+    "so sehr, dass der graueste Tag mit dir zum schönsten wird",
+    "öfter, als die Erde die Sonne umrundet hat",
+    "so fest, wie man ein Kuscheltier hält – nämlich für immer",
+    "tausendmal mehr, als ich je sagen kann",
+    "so sehr, dass ich dich am liebsten jede Minute umarmen würde",
+    "mehr als alle Wolken am Himmel",
+    "so sehr, dass mein Lächeln nur noch deinen Namen kennt",
+    "wie das Meer die Küste – immer wieder und ohne Ende",
+    "so sehr, dass ich dich mit geschlossenen Augen überall finden würde",
+    "mehr als Netflix, Chips und Sofa zusammen",
+    "so sehr, dass Zeit und Raum keine Rolle spielen",
+    "bis zum nächsten Sternensystem und wieder heim zu dir",
+    "so sehr, dass Wissenschaftler dafür eine neue Maßeinheit erfinden müssten",
+    "mehr als jedes Feuerwerk an Silvester",
+    "so sehr, dass dein Name mein liebstes Wort ist",
+    "größer als der Himmel über uns",
+    "so sehr, dass ich dich auch in hundert Jahren noch genauso lieben würde",
+    "wie die Sonne den Morgen – jeden einzelnen Tag",
+    "so sehr, dass mein Herz in deinem Takt schlägt",
+    "mehr als alle Sterne einer klaren Sommernacht",
+    "so sehr, dass sogar das Wort „unfassbar“ zu klein dafür ist",
+    "bis nach Unendlich und einmal quer durch",
+    "so sehr, dass du mein erster Gedanke am Morgen und mein letzter am Abend bist",
+    "mehr als alle Blumen auf allen Wiesen",
+    "so sehr, wie ein Regenbogen Farben hat – und noch ein paar mehr",
+    "so tief, dass man keinen Boden findet",
+    "mehr, als der Mond die Nacht liebt",
+    "so sehr, dass ich für dich jede Treppe der Welt hochrennen würde",
+    "mehr, als in alle Bücher der Welt passt",
+    "so sehr, dass mein Herz Purzelbäume schlägt, wenn du lachst",
+    "wie ein Lagerfeuer im Winter – warm, hell und nie genug",
+    "mehr als alle Tropfen im Ozean",
+    "so sehr, dass ich dich auch ohne ein Wort verstehe",
+    "so groß wie ein Elefant – und der ist ziemlich groß",
+    "mehr, als zwei Arme umfassen können",
+    "so sehr, dass jede Sekunde ohne dich zu lang ist",
+    "bis zum Gipfel jedes Berges und dann noch höher",
+    "mehr als Sonnenschein nach einer langen Regenwoche",
+    "so sehr, dass ich dich am liebsten in die Tasche stecken und überallhin mitnehmen würde",
+    "wie ein Kind den Weihnachtsmorgen – voller Vorfreude, Glück und Staunen",
+    "so sehr, dass es manchmal richtig kribbelt",
+    "mehr als alle Herzen auf allen Valentinskarten",
+    "so sehr, dass selbst Dinosaurier neidisch wären",
+    "so sehr, dass ich dich jeden Tag aufs Neue auswählen würde",
+    "größer als jeder Traum",
+    "mehr, als Bienen Honig lieben",
+    "so sehr, dass die Schwerkraft dagegen nur ein leichter Windstoß ist",
+    "mit allem, was ich habe, und noch ein bisschen mehr",
+    "so sehr, dass dein Lachen mein Lieblingsgeräusch der Welt ist",
+    "mehr als der Frühling nach einem langen Winter",
+    "so sehr, dass sich jeder Ort mit dir nach Zuhause anfühlt",
+    "bis in alle Ewigkeit und einen Tag länger",
+    "so sehr, dass ich dich auch im Schlafanzug mit zerzausten Haaren am allerschönsten finde",
+    "mehr als alle Töne in allen Liedern",
+    "so sehr, dass die Sonne neben dir blass aussieht",
+    "wie ein Planet seine Sonne umkreist – immer, ohne Pause",
+    "so sehr, dass ich mich jeden Tag neu in dich verliebe",
+    "mehr als alle Pixel auf allen Bildschirmen der Welt",
+    "so sehr, dass mich nichts und niemand davon abbringen könnte",
+    "mehr, als ein Hund seinen Lieblingsstock liebt – und das ist eine Menge",
+    "bis zur letzten Zeile im letzten Märchen und noch darüber hinaus",
+    "so sehr, dass ich dich in jedem Leben wiederfinden würde",
+    "mehr als alle Umarmungen, die je gegeben wurden",
+    "so sehr, dass mein Herz dafür fast zu klein ist",
+    "so wild wie ein Gewitter und so sanft wie ein Sommerregen",
+    "mehr als alle Minuten, die es je gab",
+    "so sehr, dass ich dir jeden Stern vom Himmel holen würde",
+    "größer als das größte Wort, das es gibt",
+    "so sehr, dass ein Tag ohne dich nur halb so hell ist",
+    "mehr als alle Kekse der Welt zusammen",
+    "so sehr, dass jeder Moment mit dir mein Lieblingsmoment ist",
+    "so sehr, dass ich vor lauter Liebe kaum geradeaus denken kann",
+    "mehr als alle Lichter einer Großstadt bei Nacht",
+    "so sehr, dass ich dich auch durch einen Sturm hindurch festhalten würde",
+    "mehr, als eine heiße Schokolade an einem Wintertag wärmt",
+    "so sehr, dass ich jeden Tag aufs Neue darüber staune",
+    "mehr, als in diese Liste, in diese App und in diesen Tag passt",
+    "so sehr, dass mein Herz kleine Luftsprünge macht",
+    "mehr als Kuscheln unter einer warmen Decke",
+    "so sehr, dass ich mit dir sogar Wäsche aufhängen romantisch finde",
+    "größer als ein Berg aus Marshmallows",
+    "so sehr, dass ich grinsen muss, wenn ich nur an dich denke",
+    "mehr als Pommes mit extra viel Ketchup",
+    "so sehr, dass ich dir meine allerletzten Gummibärchen abgeben würde",
+    "wie eine Kerze in einer kuscheligen Winternacht – warm und nur für dich",
+    "so sehr, dass mein Handy-Hintergrund neidisch auf dein Lächeln ist",
+    "bis zum Regenbogen und dann auf den Wolken wieder nach Hause",
+    "so sehr, dass ich dich am liebsten den ganzen Tag knuddeln würde",
+    "mehr als ein Welpe, der sich riesig freut, wenn man nach Hause kommt",
+    "so sehr, dass ich dich sogar mit Schluckauf noch süß finde",
+    "mehr als alle Seifenblasen an einem Sommertag",
+    "so sehr, wie ein Teddy festgehalten wird, wenn es gewittert",
+    "mit Herzchen in den Augen – und zwar mit ganz vielen",
+    "mehr als Sonntagmorgen im Bett mit dir",
+    "so sehr, dass ich dich jeden Tag mindestens hundertmal anschauen könnte",
+    "so sehr, dass ich dir die größte Wolke Zuckerwatte der Welt schenken würde",
+    "mehr als der erste Schnee für ein Kind",
+    "so sehr, dass mein Bauch vor lauter Glück kribbelt",
+    "wie ein Kätzchen, das sich zusammenrollt – ganz nah bei dir",
+    "so sehr, dass ich dir mein letztes Stück Schokolade geben würde (und das ist echte Liebe)",
+    "mehr als alle Kuschelstunden zusammen",
+    "so sehr, dass ich dir Herzen an den Himmel malen würde",
+    "größer als die größte Umarmung der Welt",
+    "so sehr, dass dein Name auf jeder Wolke steht",
+    "mehr als Eis im Sommer – und ich liebe Eis",
+    "so sehr, dass ich neben dir alles andere vergesse",
+    "wie ein kleiner Stern, der nur für dich leuchtet",
+    "so sehr, dass ich mit dir im Regen tanzen würde",
+    "mehr als alle Pünktchen auf allen Marienkäfern",
+    "so sehr, dass mein Herz Hüpfburg spielt, wenn du reinkommst",
+    "so sehr, dass ich dich in Decken einwickeln und nie wieder loslassen würde",
+    "mehr als Pfannkuchen am Sonntag",
+    "so sehr, dass jeder Tag mit dir wie Geburtstag ist",
+    "wie eine warme Tasse Tee in kalten Händen",
+    "so sehr, dass ich ein Lied erfinden würde, das nur wir beide verstehen",
+    "mehr als alle Sterne in meinen Augen, wenn ich dich sehe",
+    "so sehr, dass du in meinem Herzen auf Dauerschleife läufst",
+    "bis zur Spitze der höchsten Eistüte",
+    "so sehr, dass ich dich auch noch lieben würde, wenn du mir mein ganzes Essen klaust",
+    "mehr als ein Glitzerregen an Silvester",
+    "so sehr, dass sich meine Arme ohne dich leer anfühlen",
+    "wie eine Biene die Blumen mag – ich summe nur noch von dir",
+    "mehr als alle Kuscheltiere in einem riesigen Kinderzimmer",
+    "so sehr, dass ich dich in jeder Menschenmenge sofort erkennen würde",
+    "wie ein Luftballon, der voller Glück immer höher steigt",
+    "so sehr, dass ich dir tausend kleine Zettel mit „ich liebe dich“ schreiben würde",
+    "mehr als alle Wunschsterne zusammen",
+    "so sehr, dass ich dein Lachen am liebsten in ein Glas packen würde",
+    "so sehr, dass mein Herz bei dir Zuhause ist",
+    "mehr als alle Zimtschnecken der Welt",
+    "so sehr, dass ich dich sogar süß finde, wenn du schimpfst",
+    "mit Schmetterlingen, Glitzer und ganz viel Herzklopfen",
+    "so sehr, dass ich dich Huckepack bis zum Mond tragen würde",
+    "mehr als Sonnenstrahlen auf der Nasenspitze",
+    "so sehr, dass wir ein Kuschelfort bauen könnten, das bis zu den Sternen reicht",
+    "größer als der größte Berg Kuscheltiere",
+    "so sehr, dass ich bei dem Gedanken an dich ganz weiche Knie bekomme",
+    "so sehr, dass ich dir jeden Morgen das Frühstück ans Bett bringen würde",
+    "mehr als Gänseblümchen auf einer Frühlingswiese",
+    "so sehr, dass ich mit dir sogar im Stau gute Laune hätte",
+    "wie ein Igel, der nur für dich seine Stacheln einzieht",
+    "so sehr, dass mir die Worte fehlen und nur noch Herzchen bleiben",
+    "mehr als jeder Kuss, der je gegeben wurde",
+    "so sehr, dass du längst bei mir im Herzen wohnst",
+    "so sehr, dass Händchenhalten mit dir das Beste am ganzen Tag ist",
+    "mehr als alle Sternschnuppen in einer Augustnacht",
+    "so sehr, dass ich dir Berge versetzen würde – oder zumindest die Spülmaschine ausräumen",
+    "wie Honig auf warmem Toast – süß und genau richtig",
+    "so sehr, dass meine Welt mit dir in Farbe ist",
+    "so sehr, dass ich lächle, selbst wenn du gar nicht da bist",
+    "mehr als alle Kuschelmomente im Winter",
+    "so sehr, dass ich dir ein Schloss aus Sofakissen bauen würde",
+    "so sehr, wie eine Sonnenblume zur Sonne schaut – nämlich immer zu dir",
+    "mehr als der Duft von frischen Waffeln",
+    "so sehr, dass mein Herz schon wieder Sehnsucht hat, kaum bist du weg",
+    "so sehr, dass ich dich nicht gegen alle Schokoladenfabriken der Welt tauschen würde",
+    "so sehr, dass du jeden Raum heller machst, sobald du ihn betrittst",
+    "mehr als alle Wunschzettel am Weihnachtsabend",
+    "so sehr, dass ich vor Glück manchmal gar nicht weiß, wohin mit mir",
+    "mit einer riesigen Schleife drumherum, nur für dich",
+    "so sehr, dass ich dir jeden Abend eine Gute-Nacht-Geschichte erzählen würde",
+    "mehr als Kakao mit Sahne an einem Regentag",
+    "so sehr, dass ich dich in Gedanken ganz oft einfach drücke",
+    "so sehr, dass meine Ohren rot werden, wenn ich von dir schwärme",
+    "wie ein Kuss auf die Stirn – ganz sanft und ganz sicher",
+    "so sehr, dass selbst die Sterne gern mit uns tauschen würden",
+    "mehr als alle Glühwürmchen in einer Sommernacht",
+    "so sehr, dass mein Herz einen kleinen Freudentanz hinlegt",
+    "so sehr, dass ich es am liebsten laut, albern und glücklich in die Welt rufen würde",
+    "mehr als der gemütlichste Pullover der Welt",
+    "so sehr, dass du für mich das schönste Zuhause bist",
+    "so sehr, dass ich dich nie wieder loslassen will (also fast nie)",
+    "größer als ein Berg aus Kissen und Decken",
+    "so sehr, dass ich dir Bärenumarmungen im Dauerabo schenke",
+    "mehr als Sterne, Sonne und Mond zusammen – und das sind ziemlich viele",
+    "so sehr, dass jeder Herzschlag „du“ sagt",
+    "so sehr, dass ich es in einem einzigen Satz nie erklären könnte"
+  ];
+
+  var OPENERS = [
+    "Na du 🥰",
+    "Pssst, ich verrat dir was 🤫",
+    "Komm mal her, ich muss dir was sagen 💌",
+    "Hey, meine Süße 💕",
+    "Ganz ehrlich? 🥺",
+    "Jetzt kommt’s 💗",
+    "Bist du bereit? 😍",
+    "Mein Herz hat gerade was gesagt 💓",
+    "Schau mal, was ich für dich hab ✨",
+    "Kleiner Liebesbrief für dich 💌",
+    "Also … 🌷",
+    "Oh, das fragst du noch? 😘",
+    "Gute Frage! Hier die Antwort 🧸",
+    "Tadaa 🎀",
+    "Ich kann’s kaum erwarten, es dir zu sagen 🐻",
+    "Dir ins Ohr geflüstert 🤍",
+    "Hallo, mein Herz 🌸",
+    "Aufgepasst, jetzt wird’s süß 🍓",
+    "Mit Herz und Schleife 🎁",
+    "Sitzt du gut? Dann los 🥰"
+  ];
+
+  var CLOSERS = [
+    "Unfassbar doll.",
+    "Unfassbar, unfassbar doll.",
+    "So unfassbar doll.",
+    "Unfassbar doll, mein Herz.",
+    "Unfassbar doll, mein Schatz.",
+    "Unfassbar doll – ganz ehrlich.",
+    "Unfassbar doll, du Süße.",
+    "Unglaublich unfassbar doll.",
+    "Unfassbar doll, jeden Tag mehr.",
+    "Unfassbar doll und kein bisschen weniger.",
+    "Wirklich unfassbar doll.",
+    "Unfassbar doll, versprochen.",
+    "Unfassbar doll, von ganzem Herzen.",
+    "Unfassbar doll, heute und immer.",
+    "Ganz unfassbar doll.",
+    "Unfassbar doll, mehr geht nicht.",
+    "Unfassbar doll, mit Herz und Schleife.",
+    "Unfassbar doll, mein Liebling.",
+    "Wahnsinnig unfassbar doll.",
+    "So doll, so unfassbar doll.",
+    "Unfassbar doll – und das ist erst der Anfang.",
+    "Unfassbar doll, mit Kuss obendrauf.",
+    "Unfassbar doll, ohne Witz.",
+    "Unfassbar doll, wirklich wahr.",
+    "Unfassbar doll, Herzchen drauf.",
+    "Unfassbar doll – bis in alle Ewigkeit.",
+    "Unfassbar doll, du bist mein Lieblingsmensch.",
+    "Unfassbar doll – und ganz allein für dich.",
+    "Unfassbar doll, du Wunderbare."
+  ];
+
+  var EMOJIS = ["💗", "🥰", "💕", "🧸", "🌸", "💖", "🫶", "💌", "✨", "🐻", "🍓", "🎀"];
+
+  function makeBag(list) {
+    var bag = [];
+    var prev = -1;
+    return function () {
+      if (!bag.length) {
+        bag = list.map(function (_, i) { return i; });
+        for (var i = bag.length - 1; i > 0; i--) {
+          var j = Math.floor(Math.random() * (i + 1));
+          var t = bag[i]; bag[i] = bag[j]; bag[j] = t;
+        }
+        if (bag[bag.length - 1] === prev) {
+          var s = bag[0]; bag[0] = bag[bag.length - 1]; bag[bag.length - 1] = s;
+        }
+      }
+      prev = bag.pop();
+      return list[prev];
+    };
+  }
+
+  function pick(list) {
+    return list[Math.floor(Math.random() * list.length)];
+  }
+
+  var nextOpener = makeBag(OPENERS);
+  var nextCloser = makeBag(CLOSERS);
+
+  var ask = document.getElementById("ask");
+  var answer = document.getElementById("answer");
+  var heartsLayer = document.getElementById("hearts");
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var bag = [];
+  var last = -1;
+
+  function nextReason() {
+    if (!bag.length) {
+      bag = REASONS.map(function (_, i) { return i; });
+      for (var i = bag.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = bag[i]; bag[i] = bag[j]; bag[j] = t;
+      }
+      if (bag[bag.length - 1] === last) {
+        var s = bag[0]; bag[0] = bag[bag.length - 1]; bag[bag.length - 1] = s;
+      }
+    }
+    last = bag.pop();
+    return REASONS[last];
+  }
+
+  function spawnHearts() {
+    if (reduceMotion) return;
+    var symbols = ["💗", "💖", "💕", "❤️", "💞"];
+    for (var i = 0; i < 14; i++) {
+      var h = document.createElement("span");
+      h.className = "heart";
+      h.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      h.style.left = Math.random() * 92 + "%";
+      h.style.fontSize = 1.2 + Math.random() * 1.6 + "rem";
+      h.style.setProperty("--dur", 2.4 + Math.random() * 2 + "s");
+      h.style.setProperty("--sway", (Math.random() * 60 - 30) + "px");
+      h.style.animationDelay = Math.random() * 0.5 + "s";
+      h.addEventListener("animationend", function (e) { e.target.remove(); });
+      heartsLayer.appendChild(h);
+    }
+  }
+
+  ask.addEventListener("click", function () {
+    ask.classList.remove("idle");
+
+    answer.textContent = "";
+
+    var opener = document.createElement("p");
+    opener.className = "opener reveal";
+    opener.textContent = nextOpener();
+
+    var line = document.createElement("p");
+    line.className = "line reveal";
+    line.textContent = "Ich liebe dich " + nextReason() + ".";
+
+    var strong = document.createElement("span");
+    strong.className = "strong reveal";
+    strong.textContent = nextCloser() + " " + pick(EMOJIS);
+
+    var again = document.createElement("p");
+    again.className = "again";
+    again.textContent = "Nochmal tippen – ich hab noch ganz viele 💞";
+
+    line.appendChild(strong);
+    answer.appendChild(opener);
+    answer.appendChild(line);
+    answer.appendChild(again);
+
+    spawnHearts();
+  });
+})();
+</script>
+<script>
+if ("serviceWorker" in navigator && location.protocol.indexOf("http") === 0) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker.register("sw.js").catch(function () {});
+  });
+}
+</script>
+</body>
+</html>
